@@ -3,69 +3,62 @@
   <div class="card" :class="{'card--full' : fullText, 'card--big' : cardBig }">
     <div class="card__wrapper">
       <div class="card__box">
-        <img class="card__img" :src="newsItem.enclosure">
+        <img class="card__img" :src="model.enclosure">
       </div>
 
       <div class="card__content">
         <div class="card__inner">
-          <a class="card__link" :href="newsItem.link" target="_blank">
-            <h3 class="card__header">{{newsItem.title}}</h3>
+          <a class="card__link" :href="model.link" target="_blank">
+            <h3 class="card__header">{{ model.title }}</h3>
           </a>
-          <div class="card__text">{{newsItem.description}}</div>
+          <div class="card__text">{{model.description}}</div>
           <button class="card__btn" @click="showFullText">Подробнее</button>
         </div>
       </div><!-- /.card__content-->
 
     </div><!-- /.card__wrapper -->
     <div class="card__footer"> 
-      <a class="card__url" :href="newsItem.url" target="_blank">{{newsItem.url | cutURL }}</a>
-      <div class="card__date">{{newsItem.pubDate | cutPubDate }}</div>
+      <a class="card__url" :href="model.url" target="_blank">{{ model.url | cutURL }}</a>
+      <div class="card__date">{{ model.pubDate | cutPubDate }}</div>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex';
-  export default {
-    props: {
-      newsItem: {
-        type: Object,
-        rerquired: true
-      }
+export default {
+  props: {
+    model: {
+      type: Object,
+      rerquired: true
+    }
+  },
+  filters: {
+    cutURL (value) {
+      return value.substr(8, 10)
     },
-    filters: {
-      /**
-        * Обрезка URL для показа в шаблоне
-        */
-      cutURL: function (value) {
-        return value.substr(8, 10);
-      },
-      /**
-        * Обрезка даты для показа в шаблоне
-        */
-      cutPubDate: function (value) {
-        return value.substr(5, 12);
-      }
-    },
-    data: function(){
-      return {
-        fullText: false,
-      }
-    },
-    computed: {
-      cardBig(){
-        return this.$store.getters['news/newsPerPage'] === 3
-      }
-    },
-    methods: {
-      showFullText(){
-        this.fullText = !this.fullText;
-      }
+    cutPubDate (value) {
+      return value.substr(5, 12)
+    }
+  },
+  data () {
+    return {
+      fullText: false
+    }
+  },
+  computed: {
+    cardBig () {
+      return this.$store.getters['news/newsPerPage'] === 3
+    }
+  },
+  methods: {
+    showFullText () {
+      this.fullText = !this.fullText
     }
   }
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .card {
     width: 520px;
     margin-bottom: 20px;
@@ -74,7 +67,7 @@
     justify-content: space-between;
     padding-top: 30px;
 
-    background-color: #fff;
+    background-color: $white;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
     border-radius: 3px;
 
@@ -176,13 +169,13 @@
   }
 
   .card__link {
-    color: #0029FF;
+    color: $blue;
     text-decoration: none;
 
     transition: color .2s linear;
 
     &:hover {
-      color: #000;
+      color: $black;
     }
   }
 
@@ -202,7 +195,7 @@
     font-style: normal;
     font-size: 14px;
     line-height: 20px;
-    color: #000;
+    color: $black;
 
     overflow: hidden;
 
@@ -223,7 +216,7 @@
     font-style: normal;
     font-size: 14px;
     line-height: 20px;
-    color: #0029FF;
+    color: $blue;
     text-decoration: underline;
 
     cursor: pointer;
@@ -238,7 +231,7 @@
     justify-content: space-between;
     padding: 4px 30px;
 
-    background-color: #FCFCFC;
+    background-color: $bgc;
   }
 
   .card__url {

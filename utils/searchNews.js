@@ -1,6 +1,9 @@
 /**
-  * Функция для поиска новостей по слову
-  */
+ * * Функция для поиска новостей по слову
+ * @param { Array } arr массив где ищем
+ * @param { String } val слово, которое ищем
+ * @return { Array } массив с результатами поиска
+ */
 function searchNews(arr, val){
   let regexp = new RegExp(val, "gi");
 

@@ -4,7 +4,7 @@
     <div class="header__item">
       <h2 class="header__text">Список новостей</h2>
       <div class="header__refresh" @click="onRefresh">
-        <img class="header__img" src="~/assets/img/Vector.png" alt="">
+        <img class="header__img" src="~/assets/img/Vector.png" alt="refresh">
       </div>
     </div>
 
@@ -13,7 +13,7 @@
       <div class="header__input-group">
         <input class="header__input" type="text" v-model="searchValue" @keyup.enter="onSearch">
           <button class="header__btn" @click="onSearch">
-            <img src="~/assets/img/Stroke.png" alt="">
+            <img src="~/assets/img/Stroke.png" alt="search">
           </button>
       </div>
     </div>
@@ -21,32 +21,32 @@
 </template>
 
 <script>
-	export default {
-		data: function(){
-			return {
-				searchValue: ''
-			}
-		},
-		methods: {
-			onRefresh(){
-				this.$store.dispatch('news/getNews')
-			},
-			onSearch(){
-				this.$store.commit('news/setSearchValue', this.searchValue);
-			}
-		}
-	}
+export default {
+  data () {
+    return {
+      searchValue: ''
+    }
+  },
+  methods: {
+    onRefresh () {
+      this.$store.dispatch('news/getNews')
+    },
+    onSearch () {
+      this.$store.commit('news/setSearchValue', this.searchValue)
+    }
+  }
+}
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.header {
 		padding: 36px 0;
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
 
-		border-bottom: 1px solid #E5E5E5;
+		border-bottom: 1px solid $grey;
   }
 
   .header__item {
@@ -61,7 +61,7 @@
   }
 
   .header__text {
-		color: #000;
+		color: $black;
 		font-family: arial;
 		font-weight: 700;
 		font-style: normal;
@@ -80,7 +80,7 @@
 		height: 40px;
 
 		border-radius: 50%;
-		background: #FFFFFF;
+		background: $white;
 		box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
 
 		position: relative;
@@ -116,7 +116,7 @@
 		height: 40px;
 		padding-left: 20px;
 
-		background-color: #fff;
+		background-color: $white;
 		box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
 		border-radius: 3px;
 		border: 0;

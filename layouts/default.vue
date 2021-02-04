@@ -1,10 +1,35 @@
 <template>
   <div class="container">
-    <TheHeader />
-    <TheControlPanel />
+    <!-- SVG Icons -->
+    <app-icons />
+
+    <!-- Header -->
+    <app-header />
+
+    <!-- Control panel -->
+    <app-controls />
+
+    <!-- Toast -->
+    <app-toast />
+
     <main>
-      <Nuxt />
+      <nuxt />
     </main>
-    <TheToast/>
   </div>
 </template>
+
+<script>
+import AppIcons from '@/components/common/icons'
+import AppHeader from '@/components/common/header'
+import AppControls from '@/components/common/controls'
+import AppToast from '@/components/common/toast'
+
+export default {
+  components: {
+    AppIcons,
+    AppHeader,
+    AppControls,
+    AppToast
+  }
+}
+</script>

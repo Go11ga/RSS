@@ -1,6 +1,8 @@
 /**
-  * Функция конвертации RSS в объект
-  */
+ * * Функция конвертации RSS в объект
+ * @param {*} incData XML
+ * @return {*} JSON
+ */
 function rssToJSON(incData){
   let res;
 	var parseString = require('xml2js').parseString;
@@ -11,8 +13,10 @@ function rssToJSON(incData){
 }
 
 /**
-  * Функция приведения входящего объекта из RSS к общему виду
-  */
+ * * Функция приведения входящего объекта из RSS к общему виду
+ * @param {*} incData JSON
+ * @return {*} JSON
+ */
 function newsConvert(incData){
   let newsInc = incData.rss.channel[0].item;
 	let url = incData.rss.channel[0].link[0];
@@ -32,8 +36,10 @@ function newsConvert(incData){
 }
 
 /**
-  * Функция сортировки массива новостей по времени публикации
-  */
+ * * Функция сортировки массива новостей по времени публикации
+ * @param { Array } arr массив новостей
+ * @return { Array } массив новостей отсортированный по времени
+ */
 function sortNews(arr){
   return  arr.sort((a, b) => {
     return ('' + b.pubDate).localeCompare(a.pubDate);

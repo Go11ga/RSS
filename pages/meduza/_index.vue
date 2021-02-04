@@ -1,16 +1,21 @@
+<!-- Новости meduza.io -->
 <template>
-  <!-- Новости meduza.io -->
   <div>
-    <TheNewsCover :news="meduzaNews"/>
+    <app-cover :model="meduzaNews"/>
   </div> 
 </template>
 
 <script>
+import AppCover from '@/components/news/cover'
+
 export default {
+  components: {
+    AppCover
+  },
+   head: {
+    title: 'Медуза'
+  },
   computed: {
-    /**
-      * Получение новостей mos
-      */
     meduzaNews(){
       return this.$store.getters['news/meduzaNews']
     }

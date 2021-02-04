@@ -1,48 +1,44 @@
+<!-- Панель навигации и вида -->
 <template>
   <div class="control">
-    <!-- Кнопки роутера -->
+    <!-- Навигация -->
     <div class="control__item">
-      <NuxtLink
+      <nuxt-link
         tag="button"
         class="control__btn"
-        :class="{'control__btn--active' : btn.isActive}"
-        v-for="(btn, i) in newsMenu"
-        :key="btn.title"
-        :to="btn.path"
+        exact
+        v-for="item in newsMenu"
+        :key="item.title"
+        :to="item.path"
       >
-        <span @click="onToggleView(i)">{{btn.title}}</span>
-      </NuxtLink>
+        {{ item.title }}
+      </nuxt-link>
     </div>
 
-    <!-- Кнопки переключения отображения количества новостей -->
+    <!-- Вид новостей -->
     <div class="control__item">
        <button
         class="view-btn"
-        v-for="(btn, i) in controlBtns"
-        :key="i"
-        :class="{'view-btn--active' : btn.isActive }"
-        @click="switchViewBtn(i)"
+        v-for="(btn, ind) in controlBtns"
+        :key="ind"
+        :class="{'view-btn--active' : btn.isActive}"
+        @click="switchViewBtn(ind)"
       >
         <svg class="view-btn__svg" :xlink:href="btn.href">
          <use :xlink:href="btn.href"></use>
         </svg>
       </button>
     </div>
-
-    <!-- SVG иконки -->
-    <common/>
   </div>
 </template>
 
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
-  data: function(){
+  data () {
     return {
       newsMenu: [
-        { title: 'Все', isActive: true, path: '/' },
+        { title: 'Все', isActive: true, path: '/1' },
         { title: 'Lenta.ru', isActive: false, path: '/lenta/1' },
         { title: 'Meduza.io', isActive: false, path: '/meduza/1' }
       ],
@@ -53,26 +49,16 @@ export default {
     }
   },
   methods: {
-    /**
-      * Навигация по новостным каналам
-      */
-    onToggleView(i) {
-      this.newsMenu.map(el=> el.isActive = false);
-      this.newsMenu[i].isActive = true;
-    },
-    /**
-      * Переключение показа количества нововстей 
-      */
-    switchViewBtn(i) {
-      this.controlBtns.map(el=> el.isActive = false);
-      this.controlBtns[i].isActive = true;
-      this.$store.commit('news/setNewsPerPage', i)
+    switchViewBtn (ind) {
+      this.controlBtns.map(el=> el.isActive = false)
+      this.controlBtns[ind].isActive = true
+      this.$store.commit('news/setNewsPerPage', ind)
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .control {
     padding: 25px 0;
     display: flex;
@@ -88,7 +74,7 @@ export default {
     font-style: normal;
     font-size: 14px;
     line-height: 16px;
-    color: #0029FF;
+    color: $blue;
 
     background-color: transparent;
     border: 0;
@@ -97,13 +83,13 @@ export default {
     transition: color .2s linear;
 
     &:hover {
-      color: #000;
+      color: $black;
       cursor: pointer;
     }
+  }
 
-    &--active {
-      color: #000;
-    }
+  .nuxt-link-exact-active {
+    color: $black;
   }
 
   .view-btn {
@@ -119,7 +105,7 @@ export default {
 
     &--active {
       .view-btn__svg {
-        fill: #0029FF;
+        fill: $blue;
       }
     }
   }
@@ -132,7 +118,7 @@ export default {
     transition: fill .2s linear;
 
     &:hover {
-      fill: #0029FF;
+      fill: $blue;
     }
   }
 </style>

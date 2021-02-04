@@ -1,5 +1,4 @@
 <template>
-  <!-- SVG иконки для кнопок отображения количества новостей -->
   <div style="display: none">
     <svg id="grid_1" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
       <rect width="18" height="8"/>

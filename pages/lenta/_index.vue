@@ -1,16 +1,21 @@
+<!-- Новости lenta.ru -->
 <template>
-  <!-- Новости lenta.ru -->
   <div>
-    <TheNewsCover :news="lentaNews"/>
+    <app-cover :model="lentaNews"/>
   </div> 
 </template>
 
 <script>
+import AppCover from '@/components/news/cover'
+
 export default {
+  components: {
+    AppCover
+  },
+   head: {
+    title: 'Лента'
+  },
   computed: {
-    /**
-      * Получение новостей lenta
-      */
     lentaNews(){
       return this.$store.getters['news/lentaNews']
     }

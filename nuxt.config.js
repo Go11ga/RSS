@@ -7,11 +7,9 @@ export default {
 	/*
 	** Global CSS - https://nuxtjs.org/guides/features/configuration#pre-processors
 	*/
-	css: [
-		'~/assets/styles/main.scss'
-	],
+	css: [],
   styleResources: {
-    scss: ['~/assets/styles/vars.scss']
+    scss: ['~/assets/scss/style.scss']
   },
 
   /*
@@ -45,6 +43,7 @@ export default {
     ['/rss2/', { target: 'https://meduza.io' }]
   ],
   plugins: ['~plugins/global'],
+  
   router: {
     middleware: ['myMiddleware'],
     scrollBehavior: function (to, from, savedPosition) {

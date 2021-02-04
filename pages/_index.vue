@@ -1,21 +1,26 @@
+<!-- Все новости -->
 <template>
-  <!-- Все новости -->
   <div>
-    <TheNewsCover :news="allNews"/>
+    <app-cover :model="allNews" />
   </div> 
 </template>
 
 <script>
+import AppCover from '@/components/news/cover'
+
 export default {
+  middleware: ['myMiddleware'],
+   head: {
+    title: 'Все новости'
+  },
+  components: {
+    AppCover
+  },
   computed: {
-    /**
-      * Получение всех новостей
-      */
     allNews(){
       return this.$store.getters['news/allNews']
     }
-  },
-  middleware: ['myMiddleware']
+  } 
 }
 </script>
 
