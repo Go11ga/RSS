@@ -82,7 +82,7 @@ export const actions = {
       commit('setAllNews')
       
     } catch (e) {
-      commit('toast/setToast', { isActive: true, text: 'Ошибка загрузки' })
+      commit('toast/setToast', { isActive: true, text: 'Ошибка загрузки' }, { root: true })
     } 
   }
 }

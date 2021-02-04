@@ -25,6 +25,7 @@ import AppControls from '@/components/common/controls'
 import AppToast from '@/components/common/toast'
 
 export default {
+  middleware: ['myMiddleware'],
   components: {
     AppIcons,
     AppHeader,
