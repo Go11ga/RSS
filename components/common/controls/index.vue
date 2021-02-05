@@ -6,12 +6,12 @@
       <nuxt-link
         tag="button"
         class="control__btn"
-        exact
-        v-for="item in newsMenu"
-        :key="item.title"
-        :to="item.path"
+        :class="{'control__btn--active' : btn.isActive}"
+        v-for="(btn, ind) in newsMenu"
+        :key="btn.title"
+        :to="btn.path"
       >
-        {{ item.title }}
+        <span @click="onToggleView(ind)">{{btn.title}}</span>
       </nuxt-link>
     </div>
 
@@ -38,7 +38,7 @@ export default {
   data () {
     return {
       newsMenu: [
-        { title: 'Все', isActive: true, path: '/1' },
+        { title: 'Все', isActive: true, path: '/all/1' },
         { title: 'Lenta.ru', isActive: false, path: '/lenta/1' },
         { title: 'Meduza.io', isActive: false, path: '/meduza/1' }
       ],
@@ -49,6 +49,10 @@ export default {
     }
   },
   methods: {
+    onToggleView(ind) {
+      this.newsMenu.map(el=> el.isActive = false);
+      this.newsMenu[ind].isActive = true;
+    },
     switchViewBtn (ind) {
       this.controlBtns.map(el=> el.isActive = false)
       this.controlBtns[ind].isActive = true
@@ -86,10 +90,10 @@ export default {
       color: $black;
       cursor: pointer;
     }
-  }
 
-  .nuxt-link-exact-active {
-    color: $black;
+    &--active {
+      color: $black;
+    }
   }
 
   .view-btn {

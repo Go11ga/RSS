@@ -1,7 +1,7 @@
 <!-- Все новости -->
 <template>
   <div>
-    <app-cover :model="allNews" />
+    <app-cover :model="news" />
   </div> 
 </template>
 
@@ -9,18 +9,20 @@
 import AppCover from '@/components/news/cover'
 
 export default {
-  middleware: ['myMiddleware'],
-   head: {
-    title: 'Все новости'
-  },
   components: {
     AppCover
   },
   computed: {
-    allNews(){
-      return this.$store.getters['news/allNews']
+    news () {
+      return this.$store.getters['news/category']
+    },
+    category () {
+      return this.$route.params.category
     }
-  } 
+  },
+  fetch () {
+    this.$store.commit('news/setCategory', this.category)
+  }
 }
 </script>
 

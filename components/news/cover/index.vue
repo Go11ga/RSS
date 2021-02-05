@@ -36,7 +36,7 @@ export default {
     }
   },
   created () {
-    this.currentx = +this.$route.params.index
+    this.currentx = +this.$route.params.page
   },
   data() {
     /**
@@ -88,7 +88,9 @@ export default {
      */
     onChangePage (event) {
       this.currentx = event
-      this.$router.push({ name: this.$route.name, params: { index: this.currentx } })
+
+      const category = this.$route.params.category
+      this.$router.push(`/${category}/${this.currentx}`)
     }
   },
   watch: {

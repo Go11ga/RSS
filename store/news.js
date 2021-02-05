@@ -5,37 +5,22 @@ export const state = () => ({
   lenta: [],
   meduza: [],
   allNews: [],
+  renderNews: [],
   newsPerPage: 4,
   searchValue: ''
 })
 
 export const getters = {
   /**
-   * * Новости lenta
+   * * Новости для рендеринга
    * @return { Array }
    */
-  lentaNews(state){
-    return searchNews(state.lenta, state.searchValue)
+  category (state) {
+    return searchNews(state.renderNews, state.searchValue)
   },
 
   /**
-   * * Новости meduza
-   * @return { Array }
-   */
-  meduzaNews(state){
-    return searchNews(state.meduza, state.searchValue)
-  },
-
-  /**
-   * * Все новости
-   * @return { Array }
-   */
-  allNews(state) {
-    return searchNews(state.allNews, state.searchValue)
-  },
-
-  /**
-   * * Количество новстей на странице
+   * * Количество новостей на странице
    * @return { Number }
    */
   newsPerPage(state) {
@@ -65,6 +50,20 @@ export const mutations = {
  
   setSearchValue (state, val) {
     state.searchValue = val
+  },
+
+  setCategory (state, categ) {
+    switch (categ) {
+      case 'all':
+        state.renderNews = [...state.allNews]
+        break
+      case 'lenta':
+        state.renderNews = [...state.lenta]
+        break
+      case 'meduza':
+        state.renderNews = [...state.meduza]
+        break
+    }
   }
 }
 

@@ -35,6 +35,7 @@ export default {
     ['/rss2/', { target: 'https://meduza.io' }]
   ],
 
-  plugins: ['~plugins/global']
-  
+  plugins: ['~plugins/global'],
+
+  loading: { color: '#0029FF' }
 }
